@@ -1,5 +1,5 @@
 before_script:
-- npm i --save-dev @types/react-router-dom
+- npm i --save @types/react-router-dom
 
 language: node_js
 node_js:
