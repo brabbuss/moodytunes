@@ -7,7 +7,7 @@
 
 ---
 
-![Screen Shot 2020-12-15 at 1 15 43 PM](https://user-images.githubusercontent.com/67513823/102267812-aca02800-3ed7-11eb-9bef-f1bdc34d05a6.png)
+![home page](https://user-images.githubusercontent.com/66697338/104397638-753e8e80-550a-11eb-995c-c34db257a3af.png)
 
 *Homepage*
 
@@ -47,7 +47,7 @@ There's more info under here about the functionality being described!
 
 ## Features 
 
-![TMDB-main](https://user-images.githubusercontent.com/67513823/102267276-e7559080-3ed6-11eb-957b-d1306d94a7e8.gif)
+![mood submission](https://user-images.githubusercontent.com/66697338/104397652-796aac00-550a-11eb-8f64-4b7f7e0c07cc.gif)
 
 *Homepage*
 
@@ -80,7 +80,7 @@ The `useEffect` hook is employed inside of the `<App/>` component to check local
 
 </details>
 
-![TMDB-movieClick](https://user-images.githubusercontent.com/67513823/102267459-2b489580-3ed7-11eb-9a9d-c57958328c6e.gif)
+![results](https://user-images.githubusercontent.com/66697338/104397637-753e8e80-550a-11eb-9282-fade445a3ce1.png)
 
 *Results View*
 
@@ -88,60 +88,49 @@ The `useEffect` hook is employed inside of the `<App/>` component to check local
 
 In this view the users are presented with song results that match the 'mood' and optional 'decade' parameters they selected in the previous screen. Results can be added to the favorites by clicking the star icon, and results can be played on spotify by clicking the spotify icon. To return back to the main view a user can click the home button or on the MoodyTunes title. 
 
-<details>
-  <summary>**Under the Hood**</summary>
+![add fav song](https://user-images.githubusercontent.com/66697338/104397671-82f41400-550a-11eb-90da-d64cb0c7c3e0.gif)
 
----
-
-The details page is nested in the React `<App />` component (inside of a Route component) with a dynamic route path parameter `/movies/:movie_id`. The movie id is pulled from the `props` of the corresponding movie poster that was clicked. The ID is bubbled up to App, at which point an API call is made to the proper endpoint (interpolating the ID) to retrieve that individual movie's information. The state of the `App` component is updated, at which point the `MovieDetails` component renders with the needed information. 
-  
-Server errors are handled with their own `Error` component page. There was a lot of missing data inside of the retrieved data. To provide a better user experience, budget information, if missing, was provided with a grooming utility that supplements missing information with a random budget. This allows full display of the UI and makes for a more robust UX. Original, ungroomed data can be used very easily by removing the grooming function.
-
-On refresh or direct navigation, the page persists (except for strange behavior on the GH deploy page) by using information inside of the `match.params` object to grab the `movie_id` and use that to call the correct movie information as laid out in the first paragraph above.
-
----
-
-</details>
-
-![TMDB-search](https://user-images.githubusercontent.com/67513823/102267517-3f8c9280-3ed7-11eb-9193-1926d7d3f2a0.gif)
-
-*Search*
-
-**Search**
-
-A user has the option to search for a movie tile which will lead to a new search results page. From this view they will be presented with a list of movie titles that match their search where they can click into each to see more details. 
+![spotify](https://user-images.githubusercontent.com/66697338/104397981-22190b80-550b-11eb-8228-8bc205b14942.gif)
 
 <details>
   <summary>**Under the Hood**</summary>
 
 ---
 
-Pleasantly simple to implement! Search functionality is a twofold process. The `NavBar` component is a class component, the only other one aside from `App` in the site. We required a class component to update the input field as the user types in a query - typing updates the value of the state of the `NavBar` component, which is then reflected on screen. Clicking the `Search` button bubbles up to `App` the string/movie title inside of the search input field. `App` uses the search input value to `.filter()` the current list of movies (as presented on the homepage) and then `.map()` over the results to populate the `SearchResults` component with `MovieCards` matching the search criteria.
-
+Favorites will be noted in search results by using the `useState` and `useEffect` hooks with the Result component. On mount, the component will check the list of favorited songs passed to it as a prop against its own ID. If a match exists, it will mark itself as a favorite and animate appropriately.
 ---
 
 </details>
+
+![favorites](https://user-images.githubusercontent.com/66697338/104397634-74a5f800-550a-11eb-83b3-a476254fc76e.png)
+
+*Favorites*
+
+**Favorites**
+
+Favorites are populated with any results that have been added to the favorites. Local storage is used to persist favorite selections. Favorites can be removed by hovering over the favorite and selecting 'remove'.
+
+![remove a song](https://user-images.githubusercontent.com/66697338/104397668-81c2e700-550a-11eb-82f2-4bfe6fa0abdc.gif)
 
 ## Reflection
 
 #### Wins
 
-* Users are able to type in a URL including the movie id and be routed to that specific movie
-* Search functionality
-* Detailed and thoughtful styling and UI
-* Rendered components have 100% test coverage (74.83% total test coverage)
+* Implementing TypeScript across the app including TDD
+* Implementing GreenSock Animation Platform to aid UX
+* Implementing a proxy server for CORS workaround
+* Site is responsive and functions on a mobile device without stylistic breaks
+* Implementing React hooks
 
 #### Challanges
 
-* Asynchronous testing in React
-* Starting with a full web build and trying to style for mobile afterward was difficult and ultimately unincorporated before submission deadline
-* Bootstrap is meant for mobile first, then expand to desktop second - a team design oversight 
+* Mastering typescript
 
 #### Future
 
-* Express server or alternative APIs to increase functionality and availability of different types of information
-* Gamify a rating system for users with simple badges and notifications
-
+* Dynamic range of valence/arousal that will translate to a mood
+* Implementation of Spotify's actual API to interact with Spotify account
+* Find songs similar to the mood of x song
 
 ## Team
 
