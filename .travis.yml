@@ -1,8 +1,12 @@
+before_script:
+- npm i --save-dev @types/react-router-dom
+
 language: node_js
 node_js:
 - node
 notifications:
   email: false
+
 deploy:
   provider: heroku
   api_key:
