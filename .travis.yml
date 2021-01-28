@@ -1,3 +1,6 @@
+before_script:
+- npm i --save @types/react-router-dom
+
 language: node_js
 node_js:
 - node
